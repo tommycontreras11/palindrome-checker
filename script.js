@@ -3,17 +3,19 @@ const input = document.getElementById('text-input');
 let result = document.getElementById('result');
 
 const checkPalindrome = () => {
-    if(input.value === '') {
+    const userInput = input.value.trim();
+    if(userInput === '') {
         alert("Please input a value");
         return;
     }
+    
+    input.value = '';
 
-    let cleanInput = removeNonAlphaNumericCharacters(input.value);
+    let cleanInput = removeNonAlphaNumericCharacters(userInput);
     let reverseInput = cleanInput.split('').reverse().join('');
 
-    input.innerText = '';
+    result.innerText =  `${userInput} is ${cleanInput !== reverseInput ? 'not' : ''} a palindrome`;
 
-    result.innerText =  `${input.value} is ${cleanInput !== reverseInput ? 'not' : ''} a palindrome`;
 }
 
 const removeNonAlphaNumericCharacters = (text) => { 
